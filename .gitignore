@@ -10,4 +10,4 @@ __pycache__/
 *.pyd
 
 # Ignore VS Code settings
-.vscode/
+.vscode/data/images/
