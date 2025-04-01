@@ -17,7 +17,7 @@ def load_captions(file_path):
             captions[image_id].append(caption)
     return captions
 
-# Preprocess images
+# Preprocess images (not used here but kept for consistency)
 def preprocess_image(image_path):
     img = Image.open(image_path).resize((299, 299))  # For InceptionV3
     img = np.array(img) / 255.0  # Normalize
@@ -32,15 +32,25 @@ def tokenize_captions(captions_dict, max_words=5000):
 
 # Main preprocessing
 def main():
-    data_dir = '../data/'
-    captions_dict = load_captions(data_dir + 'captions.txt')
+    # Use absolute path based on script location
+    script_dir = os.path.dirname(os.path.abspath(__file__))  # Path to src/
+    data_dir = os.path.join(script_dir, '..', 'data')        # Path to data/
+    captions_file = os.path.join(data_dir, 'caption.txt')    # Path to caption.txt
+    
+    # Verify the file exists
+    if not os.path.exists(captions_file):
+        raise FileNotFoundError(f"Caption file not found at: {captions_file}. Please ensure 'caption.txt' is in 'data/'.")
+    
+    # Load and process captions
+    captions_dict = load_captions(captions_file)
     tokenizer = tokenize_captions(captions_dict)
     
     # Save processed data
-    os.makedirs(data_dir + 'processed_data', exist_ok=True)
-    pd.to_pickle(captions_dict, data_dir + 'processed_data/captions_dict.pkl')
-    pd.to_pickle(tokenizer, data_dir + 'processed_data/tokenizer.pkl')
-    print("Preprocessing complete!")
+    processed_dir = os.path.join(data_dir, 'processed_data')
+    os.makedirs(processed_dir, exist_ok=True)
+    pd.to_pickle(captions_dict, os.path.join(processed_dir, 'captions_dict.pkl'))
+    pd.to_pickle(tokenizer, os.path.join(processed_dir, 'tokenizer.pkl'))
+    print("Preprocessing complete! Processed data saved in 'data/processed_data/'.")
 
 if __name__ == "__main__":
     main()
