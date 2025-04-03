@@ -225,4 +225,50 @@ text
    git push
 
 
-   
+   markdown
+## CLI Usage
+Run the captioning tool from the command line:
+```bash
+python app.py data/image/1000268201_693b08cb0e.jpg
+Options:
+
+--model: Specify custom model path (default: models/saved_model/my_caption_model.h5)
+--tokenizer: Specify custom tokenizer path (default: data/processed_data/tokenizer.pkl)
+--verbose: Show detailed output with per-word confidence scores
+Example:
+
+bash
+python app.py data/image/1000268201_693b08cb0e.jpg --verbose
+Output example:
+
+text
+Loading model from: models/saved_model/my_caption_model.h5
+Loading tokenizer from: data/processed_data/tokenizer.pkl
+Processing image: data/image/1000268201_693b08cb0e.jpg
+Predicted word: 'a' (Confidence: 0.95)
+Predicted word: 'little' (Confidence: 0.89)
+...
+Generated Caption: a little girl in a pink dress going into a wooden cabin
+Average Confidence: 0.90
+text
+- Commit:
+  ```bash
+  git add README.md
+  git commit -m "Update README with CLI usage instructions"
+  git push
+Action
+Decide on Flask:
+Remove: git checkout -- requirements.txt
+Keep: git add requirements.txt && git commit -m "Add Flask for future web app" && git push
+I’d go with remove since you’re CLI-focused—your call!
+
+Ignore static/:
+bash
+echo "static/" >> .gitignore
+git add .gitignore
+git commit -m "Ignore static folder"
+git push
+
+Test app.py:
+bash
+python app.py data/image/1000268201_693b08cb0e.jpg --verbose
