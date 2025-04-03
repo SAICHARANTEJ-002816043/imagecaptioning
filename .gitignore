@@ -1,1 +1,3 @@
 data/image/
+src/__pycache__/
+venv/
