@@ -2,3 +2,4 @@ data/image/
 src/__pycache__/
 venv/
 static/
+static/
