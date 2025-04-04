@@ -1,5 +1,6 @@
 
-# Image Captioning Project
+# ImageSpeak: Automated Captioning with Confidence Scoring
+A deep learning project to generate image captions using a CLI tool...
 
 This project implements an image captioning system using deep learning. It leverages a pre-trained InceptionV3 model for image feature extraction and an LSTM-based sequence model to generate natural language captions. The project is built with TensorFlow and trained on a subset of the Flickr8k dataset.
 
